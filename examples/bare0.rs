@@ -19,7 +19,7 @@ extern crate panic_halt;
 use cortex_m_rt::entry;
 
 // a constant (cannot be changed at run-time)
-const X_INIT: u32 = 10;
+const X_INIT: u32 = 15; //2^32=4294967295
 
 // global mutabale variables (changed using unsafe code)
 static mut X: u32 = X_INIT;
@@ -31,11 +31,12 @@ fn main() -> ! {
     let mut x = unsafe { X };
 
     loop {
-        x += 1; // <- place breakpoint here (3)
+       x = x.wrapping_add(1);//x += 1; // <- place breakpoint here (3)
+        //x = x.wrapping_add(1);
         unsafe {
-            X += 1;
+           X = X.wrapping_add(1);//X += 1;
             Y = X;
-            assert!(x == X && X == Y);
+            assert!(x == X && X == Y + 1)//assert!(x == X && X == Y);
         }
     }
 }
@@ -48,25 +49,28 @@ fn main() -> ! {
 // 1. Run the program in the debugger, let the program run for a while and
 //    then press pause. Look in the (Local -vscode) Variables view what do you find.
 //
-//    ** your answer here **
+//    x: 2353717
 //
 //    In the Expressions (WATCH -vscode) view add X and Y
 //    what do you find
 //
-//    ** your answer here **
+//    X : 2353717
+//    Y : 2353717
 //
 //    Step through one complete iteration of the loop
 //    and see how the (Local) Variables are updated
 //    can you foresee what will eventually happen?
 //
-// 	  ** place your answer here **
+// 	  the variable is incremented by 1 then same for X. Then 
+//    Y = X. It means that the variable x, X, Y wont be the same at some point.
 //
 //    Commit your answers (bare0_1)
 //
 // 2. Alter the constant X_INIT so that `x += 1` directly causes `x` to wrap
 // 	  what happens when `x` wraps
-//
-//    ** your answer here **
+//      
+//    We enter into panic mode.
+//    if we start above 2^32 : literal out of range for u32
 //
 //    Commit your answers (bare0_2)
 //
@@ -74,10 +78,14 @@ fn main() -> ! {
 //
 //    Change (both) += opertions to use wrapping_add
 //    load and run the progam, what happens
-//    ** your answer here **
+//    
+//    When the program increase by 1 over 2^32 we are going 
+//    to 0. So 2^32 is the largest value and if we incremente 
+//    it will fall down to 0 and continue again and again.
 //
 //    Now continue exectution, what happens
-//    ** your answer here **
+//    
+//    All the variables increase by 1 
 //
 //    Commit your answers (bare0_3)
 //
@@ -86,7 +94,7 @@ fn main() -> ! {
 //
 // 4. Change the asserion to `assert!(x == X && X == Y + 1)`, what happens?
 //
-//    ** place your answer here **
+//    We enter in panic mode
 //
 //    Commit your answers (bare0_4)
 //
