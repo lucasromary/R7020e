@@ -49,22 +49,20 @@ fn main() -> ! {
 // 1. Run the program in the debugger, let the program run for a while and
 //    then press pause. Look in the (Local -vscode) Variables view what do you find.
 //
-//    
+//    x: 2353717
 //
 //    In the Expressions (WATCH -vscode) view add X and Y
 //    what do you find
 //
-//    
-//    
+//    X : 2353717
+//    Y : 2353717
 //
 //    Step through one complete iteration of the loop
 //    and see how the (Local) Variables are updated
 //    can you foresee what will eventually happen?
 //
-// 	  
-//    
-//
-//    Commit your answers (bare0_1)
+// 	  the variable is incremented by 1 then same for X. Then 
+//    Y = X. It means that the variable x, X, Y wont be the same at some point.
 //
 // 2. Alter the constant X_INIT so that `x += 1` directly causes `x` to wrap
 // 	  what happens when `x` wraps
