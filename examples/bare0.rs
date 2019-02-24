@@ -19,7 +19,7 @@ extern crate panic_halt;
 use cortex_m_rt::entry;
 
 // a constant (cannot be changed at run-time)
-const X_INIT: u32 = 10;
+const X_INIT: u32 = 4294967295;
 
 // global mutabale variables (changed using unsafe code)
 static mut X: u32 = X_INIT;
@@ -67,8 +67,8 @@ fn main() -> ! {
 // 2. Alter the constant X_INIT so that `x += 1` directly causes `x` to wrap
 // 	  what happens when `x` wraps
 //      
-//    
-//    
+//    We enter into panic mode.
+//    if we start above 2^32 : literal out of range for u32
 //
 //    Commit your answers (bare0_2)
 //
