@@ -31,12 +31,12 @@ fn main() -> ! {
     let mut x = unsafe { X };
 
     loop {
-       x += 1; // <- place breakpoint here (3)
-       
+        x = x.wrapping_add(1);//x += 1; // <- place breakpoint here (3)
         unsafe {
-            X += 1;
-            Y = X;
-            assert!(x == X && X == Y);
+           X = X.wrapping_add(1);//X += 1;
+           Y = X;
+           assert!(x == X && X == Y);
+
         }
     }
 }
@@ -77,19 +77,19 @@ fn main() -> ! {
 //    Change (both) += opertions to use wrapping_add
 //    load and run the progam, what happens
 //    
-//     
-//   
-//   
+//    When the program increase by 1 over 2^32 we are going 
+//    to 0. So 2^32 is the largest value and if we incremente 
+//    it will fall down to 0 and continue again and again.
 //
 //    Now continue exectution, what happens
 //    
-//    
+//    All the variables increase by 1 
 //
 //    Commit your answers (bare0_3)
 //
 //    (If the program did not succeed back to the breakpoint
 //    you have some fault in the program and go back to 3.)
-//
+
 // 4. Change the asserion to `assert!(x == X && X == Y + 1)`, what happens?
 //
 //    
