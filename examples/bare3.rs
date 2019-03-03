@@ -69,7 +69,7 @@ fn main() -> ! {
 //
 //    What is the type of `bs`?
 //
-//    array
+//    string slice
 //
 //    What is the type of `c`?
 //
