@@ -100,7 +100,21 @@ fn main() -> ! {
 //    What is the output of:
 //    (gdb) disassemble
 //
-//    ** your answer here **
+//    disassemble
+//{"token":52,"outOfBandRecord":[],"resultRecords":{"resultClass":"done","results":[]}}
+// Dump of assembler code for function rust_begin_unwind:
+// 0x08003432 <+0>:	sub	sp, #16
+// 0x08003434 <+2>:	mov	r1, r0
+// 0x08003436 <+4>:	str	r0, [sp, #8]
+// 0x08003438 <+6>:	str	r1, [sp, #4]
+// 0x0800343a <+8>:	b.n	0x800343c <rust_begin_unwind+10>
+// 0x0800343c <+10>:	movs	r0, #4
+// 0x0800343e <+12>:	strb.w	r0, [sp, #15]
+// 0x08003442 <+16>:	ldrb.w	r0, [sp, #15]
+// 0x08003446 <+20>:	bl	0x8003450 <core::sync::atomic::compiler_fence>
+//=> 0x0800344a <+24>:	b.n	0x800344c <rust_begin_unwind+26>
+// 0x0800344c <+26>:	b.n	0x800343c <rust_begin_unwind+10>
+// End of assembler dump.
 //
 //    Commit your answers (bare1_3)
 //
