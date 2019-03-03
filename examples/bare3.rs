@@ -94,7 +94,8 @@ fn main() -> ! {
 //`
 //    Run the program, what happens and why?
 //
-//    ** your answer here **
+//    it returns an array of 4 zeros, because we initialize at 0.  
+//    Before we initialized it a 65 that Equal to A after conversion
 //
 //    Commit your answers (bare3_3)
 //
@@ -110,4 +111,3 @@ fn main() -> ! {
 //    Implement and test your solution.
 //
 //    Commit your answers (bare3_5)
-
