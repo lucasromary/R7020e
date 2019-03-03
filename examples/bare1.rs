@@ -13,6 +13,8 @@
 extern crate panic_halt;
 
 use cortex_m_rt::entry;
+use cortex_m::{iprintln, Peripherals};
+use cortex_m_semihosting::hprintln;
 
 #[entry]
 #[inline(never)]
@@ -23,7 +25,12 @@ fn main() -> ! {
 
     let mut _x = 0;
     loop {
+ 
         _x += 1;
+        let mut p = Peripherals::take().unwrap();
+        let stim = &mut p.ITM.stim[0];
+        iprintln!(stim,"{}",_x);
+        hprintln!("{}", _x).unwrap();
         cortex_m::asm::nop();
         cortex_m::asm::bkpt();
         _x -= 1;
@@ -55,10 +62,11 @@ fn main() -> ! {
 //    loop, (press pause/suspend to verify this).
 //    what is the output in the ITM console
 //
-//    ** your answer here **
+//    the output is 1.
 //
 //    What is the output in the semihosting (openocd) console
-//    ** your answer here **
+//    
+//    the output is 1.
 //
 //    Commit your answers (bare1_1)
 //
