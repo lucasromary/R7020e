@@ -235,7 +235,12 @@ fn main() -> ! {
 //    Compare the generated assembly for the loop
 //    between the dev (unoptimized) and release (optimized) build.
 //
-//    ** your answer here **
+//    IT takes less register: 
+// disassemble
+// {"token":72,"outOfBandRecord":[],"resultRecords":{"resultClass":"done","results":[]}}
+// Dump of assembler code for function rust_begin_unwind:
+// => 0x08000b20 <+0>:	b.n	0x8000b20 <rust_begin_unwind>
+// End of assembler dump.
 //
 //    commit your answers (bare1_5)
 //
