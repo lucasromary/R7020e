@@ -18,30 +18,33 @@ use cortex_m_semihosting::{hprint, hprintln};
 #[entry]
 fn main() -> ! {
     hprintln!("bare3").unwrap();
-    let s:&'static str = "ABCD";
-    let bs:&[u8] = s.as_bytes();
+    let s: &'static str = "ABCD";
+    let bs: &[u8] = s.as_bytes();
+    let _c: &[u8];
+    let _i: i32;
 
     hprintln!("s = {}", s).unwrap();
     hprintln!("bs = {:?}", bs).unwrap();
 
     hprintln!("iterate over slice").unwrap();
-    let _c:&u8;
     for _c in bs {
         hprint!("{},", _c).unwrap();
     }
-    let _i:u32;
-    hprintln!("iterate iterate using (raw) indexing").unwrap();
+ let mut _a: [u8; 4]=[65u8; 4];
+    unsafe{
+        hprintln!("iterate iterate using (raw) indexing").unwrap();
     for _i in 0..s.len() {
+        _a[_i]=bs[_i];
         hprintln!("{},", bs[_i]).unwrap();
-    }
+    }}
 
     hprintln!("").unwrap();
 
-    let a: [u8;4] = [65u8; 4];
+   
     //let mut a = [0u8; 4];
 
     hprintln!("").unwrap();
-    hprintln!("a = {}", core::str::from_utf8(&a).unwrap()).unwrap();
+    hprintln!("a = {}", core::str::from_utf8(&_a).unwrap()).unwrap();
 
     loop {}
 }
