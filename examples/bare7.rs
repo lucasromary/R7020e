@@ -125,11 +125,12 @@ fn main() -> ! {
 //
 //    rcc.cfgr.sysclk(64.mhz()).pclk1(64.mhz()).pclk2(64.mhz()).freeze();
 //
-//    ** your answer here **
+//    pclk1 should be at 42 mhz maximum so 64 mhz is impossible for our MCU
+//    hclk should be equal to 84 mhz and not 16Mhz
 //
 //    rcc.cfgr.sysclk(84.mhz()).pclk1(42.mhz()).pclk2(64.mhz()).freeze();
-//
-//    ** your answer here **
+//    
+//    hclk should be equal to 84 mhz and not 16Mhz
 //
 //    Commit your answers (bare7_1)
 //
@@ -234,3 +235,4 @@ fn main() -> ! {
 //    or just show the path to the doc (to open it manually)
 //
 //    $ rustup doc --path
+
